@@ -9,7 +9,7 @@ namespace Core.DataAccess.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=;Database;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=desktop-r8212t7;Database=RentCar;Trusted_Connection=true");
         }
     }
 }
