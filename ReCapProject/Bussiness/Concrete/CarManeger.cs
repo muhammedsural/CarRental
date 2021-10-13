@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Bussiness.Abstract;
+using Bussiness.Constants;
 using Core.Utilities;
 using DataAccess.Abstract;
 using Entities;
@@ -10,6 +11,7 @@ namespace Bussiness.Concrete
 {
     public class CarManeger : ICarService
     {
+        //Maneger da sadece ilgili entitynin dal loosing coupled olarak dahil edilir. Başka entity bağımlı hale getirilemez service i kullanılır.
         private ICarDal _carDal;
 
         public CarManeger(ICarDal carDal)
@@ -17,29 +19,35 @@ namespace Bussiness.Concrete
             _carDal = carDal;
         }
 
-        public IResult Add(Car product)
-        {
-            throw new NotImplementedException();
-        }
 
         public IDataResult<List<Car>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(result,Messages.ProductsListed);
         }
 
-        public IDataResult<List<Car>> GetAllByCategoryId(int id)
+        public IResult Add(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Add(car);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public IDataResult<Car> GetById(int productId)
+        public IResult Delete(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        public IDataResult<List<Car>> GetByUnitPrice(decimal min, decimal max)
+        public IResult Update(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarDeleted);
+        }
+
+        public IDataResult<Car> GetById(int carId)
+        {
+            var result = _carDal.Get(c => c.Id == carId);
+            return new SuccessDataResult<Car>(result);
         }
     }
 }

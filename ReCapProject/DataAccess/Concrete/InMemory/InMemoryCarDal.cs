@@ -42,10 +42,6 @@ namespace DataAccess.Concrete.InMemory
         {
             throw new NotImplementedException();
         }
-        public void Delete(Car entity)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Car> GetAllByCategory(int categoryId)
         {

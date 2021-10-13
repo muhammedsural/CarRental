@@ -40,22 +40,12 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public List<TEntity> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
             {
                 return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
-        }
-
-        public List<TEntity> GetAllByCategory(int categoryId)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(TEntity entity)
@@ -67,5 +57,6 @@ namespace Core.DataAccess.EntityFramework
                 context.SaveChanges();//Kaydettik
             }
         }
+
     }
 }

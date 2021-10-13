@@ -9,10 +9,10 @@ namespace Bussiness.Abstract
     public interface ICarService
     {
         IDataResult<List<Car>> GetAll();
-        IDataResult<List<Car>> GetAllByCategoryId(int id);
-        IDataResult<List<Car>> GetByUnitPrice(decimal min, decimal max);
-        IResult Add(Car product);
-        IDataResult<Car> GetById(int productId); //Ürün detayları için kullanılıyor .
+        IResult Add(Car car);
+        IResult Delete(Car car);
+        IResult Update(Car car);
+        IDataResult<Car> GetById(int carId); //Ürün detayları için kullanılıyor .
 
     }
 }
